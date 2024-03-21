@@ -1,5 +1,5 @@
 {
-  "name": "",
+  "name": "accosta-website",
   "private": true,
   "sideEffects": false,
   "type": "module",
@@ -11,8 +11,10 @@
     "typecheck": "tsc"
   },
   "dependencies": {
+    "@portabletext/react": "^3.0.13",
     "@remix-run/node": "^2.8.1",
     "@remix-run/react": "^2.8.1",
+    "@sanity/client": "^6.15.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

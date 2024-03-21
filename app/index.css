@@ -1,0 +1,29 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans");
+
+:root {
+  --width-max-content: 800px;
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+  background-color: white;
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  margin-bottom: 26px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 0;
+}
+
+p {
+  line-height: 1.4;
+}
