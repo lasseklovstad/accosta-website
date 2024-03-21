@@ -19,6 +19,7 @@ export const meta: MetaFunction = () => {
 
 export function Layout({ children }: { children: React.ReactNode }) {
   const data = useRouteLoaderData<typeof clientLoader>("root");
+
   return (
     <html lang="no">
       <head>
