@@ -14,7 +14,14 @@ import { Container } from "./components/Container/Container";
 import { Footer } from "./components/Footer/Footer";
 
 export const meta: MetaFunction = () => {
-  return [{ title: "Accosta" }];
+  return [
+    { title: "Accosta" },
+    {
+      name: "description",
+      content:
+        "Accosta AS er et regnskapsbyrå som tilbyr regnskapsføring og konsulenttjenester innen økonomi og skatt. Vi ønsker å bli din samarbeidspartner på økonomi og regnskap og tilbyr god fagkunnskap og fleksible løsninger.",
+    },
+  ];
 };
 
 export function Layout({ children }: { children: React.ReactNode }) {

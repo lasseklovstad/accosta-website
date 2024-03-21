@@ -8,7 +8,14 @@ import { ImageGrid } from "~/components/Image/Image";
 import { getPageContent } from "~/sanity";
 
 export const meta: MetaFunction<typeof clientLoader> = ({ data }) => {
-  return [{ title: "Accosta | " + data?.page.title }];
+  return [
+    { title: "Accosta | " + data?.page.title },
+    {
+      name: "description",
+      content:
+        "Accosta AS er et regnskapsbyrå som tilbyr regnskapsføring og konsulenttjenester innen økonomi og skatt. Vi ønsker å bli din samarbeidspartner på økonomi og regnskap og tilbyr god fagkunnskap og fleksible løsninger.",
+    },
+  ];
 };
 
 export async function clientLoader({
