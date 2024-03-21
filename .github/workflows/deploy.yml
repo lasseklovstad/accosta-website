@@ -28,6 +28,6 @@ jobs:
           server: ftp.domeneshop.no
           username: accosta
           password: ${{ secrets.ftp_password }}
-          local-dir: ./build/client
+          local-dir: ./build/client/
           server-dir: www/
           dry-run: true
