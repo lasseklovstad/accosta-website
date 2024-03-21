@@ -4,7 +4,7 @@ import { useLoaderData } from "@remix-run/react";
 import { ComponentProps } from "react";
 import { PageLayout } from "~/components/PageLayout/PageLayout";
 import { TextBlock } from "~/components/TextBlock/TextBlock";
-import { Image } from "~/components/Image/Image";
+import { Image, ImageGrid } from "~/components/Image/Image";
 import { getPageContent } from "~/sanity";
 
 export async function clientLoader({
@@ -17,24 +17,11 @@ const components: ComponentProps<typeof PortableText>["components"] = {
   types: {
     textBlock: ({ value }) => <TextBlock {...value} />,
     blockImage: ({ value }) => (
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: `repeat(${
-            value.images.length > 1 ? 3 : 1
-          }, 1fr)`,
-          alignItems: "center",
-        }}
-      >
-        {value.images.map((image: ComponentProps<typeof Image>) => (
-          <Image
-            key={image.imageUrl}
-            {...image}
-            size={value.size}
-            showAltText={value.showAltText}
-          />
-        ))}
-      </div>
+      <ImageGrid
+        images={value.images}
+        size={value.size}
+        showAltText={value.showAltText}
+      />
     ),
   },
 };

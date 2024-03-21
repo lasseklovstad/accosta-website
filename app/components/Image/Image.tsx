@@ -29,3 +29,30 @@ export function Image({
     </div>
   );
 }
+
+export function ImageGrid({
+  images,
+  size = 300,
+  showAltText = false,
+}: {
+  images: ImageProps[];
+  size?: number;
+  showAltText?: boolean;
+}) {
+  return (
+    <div
+      className={`${styles.grid} ${
+        images.length === 1 ? styles.gridOne : styles.gridMany
+      }`}
+    >
+      {images.map((image) => (
+        <Image
+          key={image.imageUrl}
+          {...image}
+          size={size}
+          showAltText={showAltText}
+        />
+      ))}
+    </div>
+  );
+}
