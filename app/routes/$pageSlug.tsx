@@ -1,11 +1,15 @@
 import { PortableText } from "@portabletext/react";
-import { LoaderFunctionArgs } from "@remix-run/node";
+import { LoaderFunctionArgs, MetaFunction } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { ComponentProps } from "react";
 import { PageLayout } from "~/components/PageLayout/PageLayout";
 import { TextBlock } from "~/components/TextBlock/TextBlock";
-import { Image, ImageGrid } from "~/components/Image/Image";
+import { ImageGrid } from "~/components/Image/Image";
 import { getPageContent } from "~/sanity";
+
+export const meta: MetaFunction<typeof clientLoader> = ({ data }) => {
+  return [{ title: "Accosta | " + data?.page.title }];
+};
 
 export async function clientLoader({
   params: { pageSlug },
