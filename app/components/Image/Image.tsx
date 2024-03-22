@@ -20,10 +20,10 @@ export function Image({
     <div className={styles.container}>
       {link ? (
         <a href={link} target="_blank" rel="noreferrer">
-          <img alt={alt || " "} src={src} style={{ maxWidth: "100%" }} />
+          <img alt={alt || ""} src={src} className={styles.image} />
         </a>
       ) : (
-        <img alt={alt || " "} src={src} style={{ maxWidth: "100%" }} />
+        <img alt={alt || ""} src={src} className={styles.image} />
       )}
       {showAltText && alt && <span>{alt}</span>}
     </div>
