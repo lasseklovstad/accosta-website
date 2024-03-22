@@ -6,10 +6,12 @@ import { PageLayout } from "~/components/PageLayout/PageLayout";
 import { TextBlock } from "~/components/TextBlock/TextBlock";
 import { ImageGrid } from "~/components/Image/Image";
 import { getPageContent } from "~/sanity";
+import { NotFound } from "~/components/NotFound/NotFound";
 
 export const meta: MetaFunction<typeof clientLoader> = ({ data }) => {
+  const title = data?.page ? "Accosta | " + data?.page.title : "Accosta";
   return [
-    { title: "Accosta | " + data?.page.title },
+    { title },
     {
       name: "description",
       content:
@@ -19,9 +21,10 @@ export const meta: MetaFunction<typeof clientLoader> = ({ data }) => {
 };
 
 export async function clientLoader({
+  request,
   params: { pageSlug },
 }: LoaderFunctionArgs) {
-  return { page: await getPageContent(pageSlug) };
+  return { page: await getPageContent(pageSlug, request.signal) };
 }
 
 const components: ComponentProps<typeof PortableText>["components"] = {
@@ -39,6 +42,11 @@ const components: ComponentProps<typeof PortableText>["components"] = {
 
 export default function Page() {
   const { page } = useLoaderData<typeof clientLoader>();
+
+  if (page === null) {
+    return <PageLayout content={<NotFound />} />;
+  }
+
   return (
     <PageLayout
       content={<PortableText value={page.content} components={components} />}

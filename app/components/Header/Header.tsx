@@ -15,7 +15,6 @@ export function Header({ links }: Props) {
               <NavLink
                 to={link.url}
                 className={({ isActive }) => (isActive ? styles.active : "")}
-                prefetch="intent"
               >
                 {link.name}
               </NavLink>

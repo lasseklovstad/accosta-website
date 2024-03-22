@@ -14,21 +14,28 @@ type Slug = {
 };
 
 // uses GROQ to query content: https://www.sanity.io/docs/groq
-export async function getPages(): Promise<{ title: string; slug: Slug }[]> {
+export async function getPages(
+  signal: AbortSignal
+): Promise<{ title: string; slug: Slug }[]> {
   return client.fetch(
     `*[_type == "page"] | order(order asc) {
     title,
     slug,
     order
-  }`
+  }`,
+    {},
+    { signal }
   );
 }
 
-export async function getPageContent(slug: string | undefined): Promise<{
+export async function getPageContent(
+  slug: string | undefined,
+  signal: AbortSignal
+): Promise<{
   title: string;
   content: PortableTextBlock;
   sideContent: PortableTextBlock;
-}> {
+} | null> {
   return client.fetch(
     `*[_type == "page" && slug.current == "${slug}"]{
       title,
@@ -41,6 +48,8 @@ export async function getPageContent(slug: string | undefined): Promise<{
         "images": lineImages[]->{ "imageUrl" : image.asset -> url, alt, link, size, showAltText },
         ...
       }
-    }[0]`
+    }[0]`,
+    {},
+    { signal }
   );
 }

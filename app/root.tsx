@@ -5,6 +5,7 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  useRouteError,
   useRouteLoaderData,
 } from "@remix-run/react";
 import { getPages } from "./sanity";
@@ -12,6 +13,7 @@ import { Header } from "./components/Header/Header";
 import "./index.css";
 import { Container } from "./components/Container/Container";
 import { Footer } from "./components/Footer/Footer";
+import { LoaderFunctionArgs } from "@remix-run/node";
 
 export const meta: MetaFunction = () => {
   return [
@@ -61,8 +63,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
   );
 }
 
-export async function clientLoader() {
-  return { pages: await getPages() };
+export async function clientLoader({ request }: LoaderFunctionArgs) {
+  return { pages: await getPages(request.signal) };
 }
 
 export default function App() {
@@ -71,4 +73,21 @@ export default function App() {
 
 export function HydrateFallback() {
   return <p>Laster...</p>;
+}
+
+export function ErrorBoundary() {
+  const error = useRouteError();
+
+  if (error instanceof Error) {
+    return (
+      <div>
+        <h1>Error</h1>
+        <p>{error.message}</p>
+        <p>The stack trace is:</p>
+        <pre>{error.stack}</pre>
+      </div>
+    );
+  } else {
+    return <h1>Unknown Error</h1>;
+  }
 }

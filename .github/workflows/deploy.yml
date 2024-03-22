@@ -1,6 +1,9 @@
 name: "Deploy frontend"
 
 on:
+  push:
+    branches:
+      - "main"
   workflow_dispatch:
 
 jobs:
@@ -17,6 +20,11 @@ jobs:
 
       - name: Download deps
         uses: bahmutov/npm-install@v1
+
+      - name: Run Typecheck/Lint
+        run: |
+          npm run lint
+          npm run typecheck
 
       - name: Run frontend tests
         run: |

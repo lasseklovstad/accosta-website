@@ -2,7 +2,7 @@ import styles from "./PageLayout.module.css";
 
 type Props = {
   content: React.ReactNode;
-  rightContent: React.ReactNode;
+  rightContent?: React.ReactNode;
 };
 export function PageLayout({ content, rightContent }: Props) {
   return (
