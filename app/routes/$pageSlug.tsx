@@ -44,11 +44,14 @@ export default function Page() {
   const { page } = useLoaderData<typeof clientLoader>();
 
   if (page === null) {
-    return <PageLayout content={<NotFound />} />;
+    return (
+      <PageLayout pageTitle="Det oppstod en feil" content={<NotFound />} />
+    );
   }
 
   return (
     <PageLayout
+      pageTitle={page.title}
       content={<PortableText value={page.content} components={components} />}
       rightContent={
         page.sideContent ? (
