@@ -4,6 +4,7 @@
   padding: 20px;
   color: #293d9b;
   width: 100%;
+  box-sizing: border-box;
 }
 
 .title {
